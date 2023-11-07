@@ -10,7 +10,7 @@ function App() {
       "swapnil2234", c => c.charCodeAt(0)),
   rp: {
       name: "Duo Security",
-      id: "http://localhost:5174",
+      id: "duosecurity.com",
   },
   user: {
       id: Uint8Array.from(
@@ -18,7 +18,7 @@ function App() {
       name: "lee@webauthn.guide",
       displayName: "Lee",
   },
-  pubKeyCredParams: [{alg: -256, type: "public-key"}],
+  pubKeyCredParams: [{alg: -7, type: "public-key"}],
   authenticatorSelection: {
       authenticatorAttachment: "platform",
   },
