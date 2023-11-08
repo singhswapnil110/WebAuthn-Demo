@@ -4,27 +4,35 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const handleSubmit = () => {
-    console.log("Called")
-    navigator.credentials.create({challenge: Uint8Array.from(
-      "swapnil2234", c => c.charCodeAt(0)),
-  rp: {
-      name: "Duo Security",
-      id: "duosecurity.com",
-  },
-  user: {
+  const publicKeyCred = {
+    challenge: Uint8Array.from("swapnil2234", c => c.charCodeAt(0)),
+    rp: {
+      name: "Webauthn Demo",
+      id: "https://webauthn-token-demo.netlify.app/",
+    },
+    user: {
       id: Uint8Array.from(
-          "UZSL85T9AFC", c => c.charCodeAt(0)),
+        "UZSL85T9AFC", c => c.charCodeAt(0)),
       name: "lee@webauthn.guide",
       displayName: "Lee",
-  },
-  pubKeyCredParams: [{alg: -7, type: "public-key"}],
-  authenticatorSelection: {
+    },
+    pubKeyCredParams: [{alg: -7, type: "public-key"}, {
+      type: "public-key",
+      alg: -257 // Value registered by this specification for "RS256"
+    }],
+    authenticatorSelection: {
       authenticatorAttachment: "platform",
-  },
-  timeout: 60000,
-  attestation: "direct"}).then(res=>console.log(res))
-  }
+      userVerification: "preferred",
+    },
+    timeout: 60000,
+    attestation: "direct"
+  };
+
+  const handleSubmit = () => {
+    console.log("Called")
+    navigator.credentials.create({publicKey: publicKeyCred})
+      .then(res=>console.log(res))
+    }
   const [count, setCount] = useState(0)
 
   return (
