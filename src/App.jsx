@@ -8,7 +8,7 @@ function App() {
     challenge: Uint8Array.from("swapnil2234", c => c.charCodeAt(0)),
     rp: {
       name: "Webauthn Demo",
-      id: "https://webauthn-token-demo.netlify.app/",
+      id: "https://netlify.app/",
     },
     user: {
       id: Uint8Array.from(
